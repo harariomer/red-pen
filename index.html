@@ -655,7 +655,7 @@ function makeSample(){
     const L=60, R=740;
     ctx.fillStyle='#D8323C'; ctx.fillRect(L*k,58*k,36*k,6*k);
     T('Consulting proposal · September 2026',L,100,14,'600','#6B7280');
-    T('AI Adoption Program for a Mid-Size Logistics Company',L,150,30,'800');
+    T('AI Adoption Program for a Mid-Size Logistics Company',L,150,25,'800');
     T('This proposal outlines a three-month track to bring AI tools into the operations',L,196,15);
     T('and sales teams, including training, process design and measurement.',L,220,15);
     T('Scope of work',L,282,20,'800');
@@ -696,7 +696,7 @@ async function loadSample(){
   else {
     const pts=ellipse(0.42,0.331,0.37,0.02);
     S.markers=[
-      {id:'s1',page:1,type:'area',x:0.065,y:0.108,w:0.86,h:0.036,kind:'Edit text',note:'Shorten the title to one line and drop "Mid-Size".',snippet:''},
+      {id:'s1',page:1,type:'area',x:0.065,y:0.11,w:0.84,h:0.032,kind:'Edit text',note:'Shorten the title to one line and drop "Mid-Size".',snippet:''},
       {id:'s2',page:1,type:'pin',x:0.76,y:0.49,kind:'Edit text',note:'This fee is outdated. It should be $48,000, and the total needs updating too.',snippet:''},
       {id:'s3',page:1,type:'pen',pts,...bbox(pts),kind:'Question',note:'Too vague. Name the three agents and what each one does.',snippet:''}
     ];
