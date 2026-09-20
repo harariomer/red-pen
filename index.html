@@ -331,7 +331,9 @@ async function paintSource(p, c, W){
   }
 }
 
+const byReadingOrder=(a,b)=> (a.y-b.y)>0.006?1:(b.y-a.y)>0.006?-1:(a.x-b.x);
 async function ensureText(p){
+  if(p.items) return [...p.items].sort(byReadingOrder);
   if(p.text) return p.text;
   if(p._textP) return p._textP;
   p._textP = (async()=>{
@@ -346,8 +348,8 @@ async function ensureText(p){
           items.push({str:t.str, x:Math.min(x1,x2)/vp.width, y:Math.min(y1,y2)/vp.height, w:Math.abs(x2-x1)/vp.width, h:Math.abs(y2-y1)/vp.height});
         }
       }catch(e){ console.warn('text extraction failed',e); }
-    } else if(p.items) items.push(...p.items);
-    items.sort((a,b)=> (a.y-b.y)>0.006?1:(b.y-a.y)>0.006?-1:(a.x-b.x));
+    }
+    items.sort(byReadingOrder);
     p.text=items; return items;
   })();
   return p._textP;
@@ -700,8 +702,9 @@ async function loadSample(){
     ];
   }
   renderMarks(p); updateMeta();
-  await renderPage(p);
+  await paintSource(p, document.createElement('canvas'), 800); // fills the sample's text items
   for(const m of S.markers){ if(!m.snippet) m.snippet=await snippetFor(p,m); }
+  save();
 }
 
 loadSample();
